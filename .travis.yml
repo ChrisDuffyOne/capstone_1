@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: u/EeDohqm/o30JQUWC7mKOkIMSpAtU8LBYu87v0yhYFzmL1LfAMKRiV5xgLQ6Xpy3b+pa5sqTQ6VulEiQiZOizmLuf3ssDWHtLdIC8qEjoWDHVh6/BsKuZCbiVCSwm8mEts6+PbKxwbjgJ2EPV9Bhp1Cr3M5qtIhI+qNxkQJuVAbHh7fJuUZUIOT7vQmkgWkIbWasBBj9LQtKSA7reHNTqTkYK/rZs+I0Fd6Gu/6Qkap+H2uLWT5dUMdEyhm4iS1RfKcHtctJ3K4KEYiln+WAnuI5DUd/g4DSXX/rGsUpT8ffNgWEeSBdn9dGP0bvIcFQkZOKFYM0epkxsVHrPCeMXuN7ZM7lqa876WLHKW4q+bd0q+hSAXM/ncfOy09ZFzVGMgUAFHlTNvs/VvKw8i0G1z8xUa2rVBNTp3X7ZicG7nYFXP8J9ZuVMgGHWTGIHsPt1kBUGnuQwGvTKcS0JhG+CCsNZadOpKL5zJXVH5vDy6IasDsENi0bn+RQ+t50xRW99mOq07O2Ja5xXTqHFNwRqfCimLH1PkycOR8uIQ7UdoGJaMIQK30oCQ5gchlul4kI5kiumeh6f+WZ1MA83lWn5egI84aUMEjBq8sMlW8oBB113QOe5JY+HJdTbs5JPLvXAN2OQspX/CtUPaLvWkOezMWaYR+r2KdUID4z1hmyUc=
+  app: capstone-arcade
+  on:
+    repo: ChrisDuffyOne/capstone_1
