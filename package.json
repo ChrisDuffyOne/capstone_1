@@ -1,0 +1,22 @@
+{
+  "name": "capstone1",
+  "version": "1.0.0",
+  "description": "Capstone project for node",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "keywords": [
+    "capstone",
+    "Capstone",
+    "arcade",
+    "Arcade",
+    "game",
+    "Game"
+  ],
+  "author": "Christopher Duffy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
