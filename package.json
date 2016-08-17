@@ -4,7 +4,8 @@
   "description": "Capstone project for node",
   "main": "server.js",
   "scripts": {
-    "test": "node server.js"
+    "start": "node server.js",
+    "test": "mocha"
   },
   "keywords": [
     "capstone",
