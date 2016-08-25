@@ -1,27 +1,49 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Capstone1</title>
+        <title>Capstone1 Arcade</title>
+        <link href="css/normalize.css" type="text/css" rel="stylesheet" />
+        <link href="css/game.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        <p>Capstone1</p>
-        
-        <!--Room Select-->
-        <ul class="roomSelect">
-            <li>ROOM0</li>
-            <li>ROOM1</li>
-            <li>ROOM2</li>
-            <li>ROOM3</li>
-        </ul>
-        
-        <!--Game Section-->
-        <canvas id="myCanvas"></canvas>
+        <div class="gameArea">
+            <p>Capstone1</p>
+            
+            <!--Room Select-->
+            <ul class="roomSelect">
+                <li>ROOM0</li>
+                <li>ROOM1</li>
+                <li>ROOM2</li>
+                <li>ROOM3</li>
+            </ul>
+            
+            <!--Score Submit-->
+            <div id="scoreSubmit">
+                <form class="userNameCreate">
+                    <p>You're Score: EMPTY</p>
+                    <input type="text" value="Player Name">
+                    <button type="button">Submit Score</button>
+                </form>
+            </div>
+            
+            <!--Game Section-->
+            <canvas id="myCanvas"></canvas>
+            
+            <!--High Score Section--->
+            <h1>High Scores</h1>
+            <ul id="scoreList">
+            </ul>
+            
+        </div>
         
         <!--Scripts-->
         <script src="/socket.io/socket.io.js"></script>
         <script src="js/jquery-2.1.0.js"></script>
         <script src="js/createjs-2015.11.26.min.js"></script>
-        <script src="js/methods.js"></script> <!-- -->
+        
+        <!--Game Scripts-->
+        <script src="js/gameState.js"></script> 
+        <script src="js/methods.js"></script> 
         <script src="js/main.js"></script>
         
     </body>

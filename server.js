@@ -15,13 +15,27 @@ io.on('connection', function(socket){
    //enter room
    socket.on('roomSelect', function(roomNum){
        socket.join(roomNum);
-       console.log('User enters rm:', roomNum);
+       
+       //DEBUG find all connected memebers
+       console.log('User ID:',socket.id);
+       console.log('Room Number:',roomNum);
+       
+       //TODO room delegation
+       console.log('room0 Connected:');
+       console.log(io.nsps['/'].adapter.rooms['room0']);
+       
    });
    
    //emit to room1
    setInterval(function(){ 
       io.in('room0').emit('roomSpecific'); 
    }, 5000);
+   
+   //DEBUG chicken movement
+   socket.on('chickenPos', function(coords){
+      console.log('Coordinates are:', coords.x , coords.y);
+      io.in('room0').emit('chickenMov', coords);
+   });
    
 });
 
