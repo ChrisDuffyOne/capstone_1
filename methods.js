@@ -28,13 +28,14 @@ exports.gameInstance = function(io, roomNum){
    var gameCounter = 0;
    
    var demoGameLoop = setInterval(function(){ 
+        
         gameCounter++;
         
         if(gameCounter%5 === 0){
-            //io.in(roomNum).emit('gameInstance', {gameType: 'foxSpawn'});
+            io.in(roomNum).emit('gameInstance', {gameType: 'foxSpawn'});
         }
         
-        //Exit game loop
+        //Exit game loop TODO terminate when everyone leaves
         if(gameCounter > 50){
           clearInterval(demoGameLoop);
         }

@@ -34,10 +34,21 @@ io.on('connection', function(socket){
        }
    });
    
-   //----------- DEBUG PLAYERS COMMUNINCATE -------------//
-   socket.on('playerPos', function(coordinates){
-       socket.broadcast.to(coordinates.room).emit('toOtherPlayer',coordinates);
+   //----------- PLAYERS COMMUNINCATE -------------//
+   socket.on('playerComm', function(data){
+       if(data.commType === 'playerPos'){
+           socket.broadcast.to(data.room).emit('playerComm', data);
+       }
+       
+       if(data.commType === 'eggFire'){
+           socket.broadcast.to(data.room).emit('playerComm', data);
+       }
+       
+       if(data.commType ==='foxDeath'){
+           socket.broadcast.to(data.room).emit('playerComm', data);
+       }
    });
+   
    
    //----------- PLAYER LEAVE -------------//
    socket.on(('userLeave' || 'disconnect'), function(content){

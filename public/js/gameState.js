@@ -6,8 +6,9 @@ var context;
 var queue;
 var stage;
 var gameLoaded = false;
-var maxFOX = 30; //DEBUG
-var maxEGG = 30; //DEBUG
+var maxFOX = 30;
+var maxEGG = 30;
+var maxEGGpartner = 30; //DEBUG
 var WIDTH = 1000;
 var HEIGHT = 500;
 
@@ -15,27 +16,28 @@ var HEIGHT = 500;
 var chickenSheet;
 var chickenBrSheet;
 var foxSheet;
-var eggSheet; //DEBUG
+var eggSheet;
 
 //Sprites
 var playerSprite;
 var partnerSprite;
-var eggSprite = []; //DEBUG
+var eggSprite = [];
+var eggSpritePartner = []; //DEBUG
 
 var foxSprite = [];
-//var playerNum; //DEBUG
+//var playerNum;
 
 var Key = {
       _pressed: {},
       
-      //DEBUG
+      //fire control
       firePressed: 0,
       firePressReset: function(){
           var self = this;
           setTimeout(function(){self.firePressed = 0}, 2000);
       },
       
-      SPACE: 32, //DEBUG
+      SPACE: 32,
       LEFT: 37,
       UP: 38,
       RIGHT: 39,

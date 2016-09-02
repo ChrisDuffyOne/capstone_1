@@ -27,11 +27,36 @@ function arcade(){
     //---------- HIGH SCORES ----------//
     getAndDisplayScore();
     
-    //---------- OTHER PLAYER MOVEMENT ----------//
-    socket.on('toOtherPlayer', function(coords){
-       console.log('OTHER PLAYER:', coords);
-       partnerSprite.x = coords.x;
-       partnerSprite.y = coords.y;
+    //---------- OTHER PLAYER COMMUNICATION ----------//
+    socket.on('playerComm', function(data){ 
+        
+        //allied player position
+        if(data.commType === 'playerPos'){
+            //sprite flip
+            if(data.x > partnerSprite.x){
+                partnerSprite.scaleX = 1;
+            }else{
+                partnerSprite.scaleX = -1;
+            } 
+            //sprite move
+            partnerSprite.x = data.x;
+            partnerSprite.y = data.y;
+        }
+        
+        //allied eggs
+        if(data.commType === 'eggFire'){
+            //console.log('Partner Fired Egg');
+            createEggPartner(data.x, data.y, data.scaleX);
+        }
+        
+       //allied player fox kill
+       if(data.commType === 'foxDeath'){
+            //console.log('CLIENT: Fox death confirmed');
+            //killFoxPartner(data.x, data.y); //WORKS no egg dissappear
+            killFoxPartner(data.x, data.y);
+            
+       }
+        
     });
     
     //---------- PLAYER LEAVE ----------//
