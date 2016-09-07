@@ -1,6 +1,6 @@
 //spawn.js
 
-function createFox(){
+function createFox(comeFromSide, speed){
     var found = -1;
     
     for(var i=0; i<maxFOX; i++){
@@ -13,12 +13,22 @@ function createFox(){
     if(found >= 0){
         foxSprite[found] = new createjs.Sprite(foxSheet, "walk"); 
         foxSprite[found].regX = 142;
-        foxSprite[found].x = WIDTH+10;
-        foxSprite[found].y = 200;
         foxSprite[found].width = 284;
         foxSprite[found].height = 185;
-        foxSprite[found].dx = 1;
-        foxSprite[found].scaleX = -1;
+        
+        if(comeFromSide.toLowerCase() === 'left'){
+            foxSprite[found].x = -10;
+            foxSprite[found].y = 200;
+            foxSprite[found].dx = speed;
+            foxSprite[found].scaleX = 1;
+        }
+        if(comeFromSide.toLowerCase() === 'right'){
+            foxSprite[found].x = WIDTH+10;
+            foxSprite[found].y = 200;
+            foxSprite[found].dx = speed;
+            foxSprite[found].scaleX = -1;
+        }
+        
         foxSprite[found].gotoAndPlay("walk");
         stage.addChildAt(foxSprite[found],1);
     }

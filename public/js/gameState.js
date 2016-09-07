@@ -8,9 +8,12 @@ var stage;
 var gameLoaded = false;
 var maxFOX = 30;
 var maxEGG = 30;
-var maxEGGpartner = 30; //DEBUG
+var maxEGGpartner = 30;
 var WIDTH = 1000;
 var HEIGHT = 500;
+
+var score = 0;
+var scoreText;
 
 //charSheets
 var chickenSheet;
@@ -22,7 +25,7 @@ var eggSheet;
 var playerSprite;
 var partnerSprite;
 var eggSprite = [];
-var eggSpritePartner = []; //DEBUG
+var eggSpritePartner = [];
 
 var foxSprite = [];
 //var playerNum;

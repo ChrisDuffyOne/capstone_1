@@ -19,15 +19,13 @@
             
             <!--Score Submit-->
             <div id="scoreSubmit">
-                <form class="userNameCreate">
-                    <p>You're Score: EMPTY</p>
-                    <input type="text" value="Player Name">
-                    <button type="button">Submit Score</button>
-                </form>
+                <p>You're Score:<span id="playerScore">VOID</span></p>
+                <input type="text" id="playerName" autocomplete="off" autofocus>
             </div>
             
             <!--Game Section-->
             <canvas id="myCanvas"></canvas>
+            
             
             <!--High Score Section--->
             <h1>High Scores</h1>
@@ -46,6 +44,7 @@
         <script src="js/spawnChar.js"></script>
         <script src="js/process.js"></script>
         <script src="js/methods.js"></script> 
+        <script src="js/score.js"></script> <!--DEBUG-->
         <script src="js/main.js"></script>
         
     </body>

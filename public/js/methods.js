@@ -11,15 +11,21 @@ function createQueue(){
         {id: 'chickenCharBr', src: 'assets/chickenBr.png'},
         {id: 'foxChar', src: 'assets/fox.png'},
         {id: 'egg', src: 'assets/egg.png'},
-        {id: 'greenScreen', src: 'assets/greenScreen.jpg'}
+        {id: 'barnScreen', src: 'assets/barnCoolBack.png'}
     ]);
     queue.load();
 }
 
 //----------- QUEUE LOADED -------------//
 function queueLoaded(event){
-    var greenFPO = new createjs.Bitmap(queue.getResult("greenScreen"));
+    var greenFPO = new createjs.Bitmap(queue.getResult("barnScreen"));
     stage.addChild(greenFPO);
+    
+    //DEBUG score area
+    scoreText = new createjs.Text("SCORE: " + score.toString(), "36px Arial", "#FFF");
+    scoreText.x = 10;
+    scoreText.y = 10;
+    stage.addChild(scoreText);
     
     chickenSheet = new createjs.SpriteSheet({
         "images": [queue.getResult('chickenChar')],
@@ -86,30 +92,30 @@ function processEvents(){
 };
 
 //------------ debug FOX KILL OTHER -------------//
-function killFoxPartner(foxX, foxY){
+function killFoxPartner(foxX, foxY, eggX, eggY){
     for(var k=0; k<maxFOX; k++) if(foxSprite[k]){
-        if(foxSprite[k].x > foxX-10 && foxSprite[k].x < foxX+10){
-            console.log('OTHER PLAYER KILL'); //DEBUG
-            //stage.removeChild(eggSpritePartner[eggNum]);
+        if(foxSprite[k].x >= foxX-10 && foxSprite[k].x <= foxX+10){
+            console.log('OTHER PLAYER KILL');
             stage.removeChild(foxSprite[k]);
-            //eggSprite.splice(eggNum, 1);
             foxSprite.splice(k, 1);
         }
     }
-    //TODO make Egg disappear
-    /*for(var i=0; i<maxEGGpartner; i++){
-        if(eggSpritePartner[i].x > foxX-10 && eggSpritePartner[i].x <foxX+10){
-            stage.removeChild(eggSpritePartner[eggNum]);
-            eggSprite.splice(eggNum, 1);
-        } 
-    }*/
+    for(var i=0; i<maxEGGpartner; i++) if(eggSpritePartner[i]){
+        if(eggSpritePartner[i].x >= eggX-10 && eggSpritePartner[i].x <= eggX+10){
+            stage.removeChild(eggSpritePartner[i]);
+            eggSprite.splice(i, 1);
+        }
+    }
 }
 
-//----------- debug GAME INSTANCE -------------//
+//----------- GAME INSTANCE -------------//
 socket.on('gameInstance',function(gameInfo){
     if(gameLoaded){
         if(gameInfo.gameType === 'foxSpawn'){
-            createFox();
+            console.log('Client direction:',gameInfo.direction);//DEBUG
+            console.log('Client speed :',gameInfo.speed);//DEBUG
+            //createFox();
+            createFox(gameInfo.direction, gameInfo.speed);
         }
     }
 });

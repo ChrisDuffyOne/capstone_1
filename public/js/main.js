@@ -3,6 +3,9 @@
 //----------------------------------//
 function arcade(){
     
+    //----------- debug CREATE SCORE INPUT -------------//
+    var scoreBoard = new ScoreList();
+    
     //----------- ROOM SELECT & LOAD ASSETS -------------//
     $('.roomSelect li').on('click', function(){
        var room = "room";
@@ -25,7 +28,7 @@ function arcade(){
     stage = new createjs.Stage("myCanvas");
     
     //---------- HIGH SCORES ----------//
-    getAndDisplayScore();
+    //getAndDisplayScore(); //DEBUG
     
     //---------- OTHER PLAYER COMMUNICATION ----------//
     socket.on('playerComm', function(data){ 
@@ -45,15 +48,12 @@ function arcade(){
         
         //allied eggs
         if(data.commType === 'eggFire'){
-            //console.log('Partner Fired Egg');
             createEggPartner(data.x, data.y, data.scaleX);
         }
         
        //allied player fox kill
        if(data.commType === 'foxDeath'){
-            //console.log('CLIENT: Fox death confirmed');
-            //killFoxPartner(data.x, data.y); //WORKS no egg dissappear
-            killFoxPartner(data.x, data.y);
+            killFoxPartner(data.foxX, data.foxY, data.eggX, data.eggY);
             
        }
         

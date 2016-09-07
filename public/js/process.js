@@ -28,7 +28,6 @@ function updatePlayerControl(){
         Key.firePressReset();
         createEgg(playerSprite.x, playerSprite.y, playerSprite.scaleX);
         
-        //DEBUG
         socket.emit('playerComm',{commType: 'eggFire', room: roomIndex, x: playerSprite.x, y:playerSprite.y, scaleX: playerSprite.scaleX});
     };
 };
@@ -88,8 +87,10 @@ function collisionProcess(){
     for(var i=0; i<maxEGG; i++) if(eggSprite[i]){
         for(var k=0; k<maxFOX; k++) if(foxSprite[k]){
             if(collide2dEasel(eggSprite[i], foxSprite[k])){
-                socket.emit('playerComm',{commType: 'foxDeath', room: roomIndex, x: foxSprite[k].x, y: foxSprite[k].y}); //DEBUG
+                socket.emit('playerComm',{commType: 'foxDeath', room: roomIndex, foxX: foxSprite[k].x, foxY: foxSprite[k].y, eggX: eggSprite[i].x, eggY: eggSprite[i].y}); //DEBUG
                 
+                score++;
+                scoreText.text = "SCORE: " + score.toString();
                 stage.removeChild(eggSprite[i]);
                 stage.removeChild(foxSprite[k]);
                 eggSprite.splice(i, 1);
@@ -98,6 +99,18 @@ function collisionProcess(){
         }
     }
     
+    //fox/player collide
+    for(var r=0; r<maxFOX; r++) if(foxSprite[r]){
+        if(collide2dEasel(foxSprite[r], playerSprite)){
+            
+            //display score box
+            $('#playerScore').html(score);
+            var localName = localStorage.getItem('playerNameLocal');
+            if(localName != undefined){ $('#playerName').val(localName)}
+            else{ $('#playerName').val('Player Name')}
+            $('#scoreSubmit').css("display", "initial");
+        }
+    }
     //testEgg
     /*if(collide2dEasel(eggSprite[0], playerSprite)){
         console.log('EASEL COLLIDE REGX Factored');

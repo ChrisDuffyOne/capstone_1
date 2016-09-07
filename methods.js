@@ -13,29 +13,31 @@ exports.roomList = function(io){
 };
 
 exports.gameInstance = function(io, roomNum){
-    //DEBUG
-    /*var demoCounter = 0;
-    var demoGameLoop = setInterval(function(){ 
-      io.in(roomNum).emit('instanceTest' , demoCounter);
-      demoCounter++;
-      //Exit game loop
-      if(demoCounter > 50){
-          clearInterval(demoGameLoop);
-      }
-    }, 1000);*/
-    
-    
    var gameCounter = 0;
-   
    var demoGameLoop = setInterval(function(){ 
         
         gameCounter++;
         
+        //----------- FOX SPAWN -------------//
         if(gameCounter%5 === 0){
-            io.in(roomNum).emit('gameInstance', {gameType: 'foxSpawn'});
+            
+            var speed;
+            var direction;
+            var eventGen = Math.floor((Math.random() * 10) + 1); //rand between 1 and 10
+            
+            //direction assign
+            if(eventGen >= 5){ direction = 'right'}
+            else{ direction = 'left'}
+            
+            //speed assign
+            if(eventGen%2 === 0){ speed = 3}
+            else{ speed = 2}
+            
+            io.in(roomNum).emit('gameInstance', {gameType: 'foxSpawn', direction: direction, speed: speed});
         }
         
-        //Exit game loop TODO terminate when everyone leaves
+        //----------- debug EXIT GAME INSTANCE -------------//
+        //TODO exit game loop when user leave
         if(gameCounter > 50){
           clearInterval(demoGameLoop);
         }

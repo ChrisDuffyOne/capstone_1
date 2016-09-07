@@ -1,8 +1,12 @@
 var http = require('http');
+require('./db/connect');
 var express = require('express');
+var bodyParser = require('body-parser');
+var itemRoutes = require('./routes/item');
 var socket_io = require('socket.io');
 
 var app = express();
+app.use(bodyParser.json());
 app.use(express.static('public'));
 
 var server = http.Server(app);
@@ -72,6 +76,13 @@ io.on('connection', function(socket){
       }
    });
    
+});
+//----------------------------------//
+//	         SCORE ROUTES           //
+//----------------------------------//
+app.use('/', itemRoutes);
+app.use('*', function(request, response){
+    response.status(404).json({message:'No page exists'});
 });
 
 //----------------------------------//
