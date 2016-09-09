@@ -14,26 +14,15 @@ router.get('/scores', function(request, response){
 });
 
 router.post('/scores', function(request, response){
-   
-   //save score
    Item.save(request.body, function(item){
        response.status(201).json(item);
    }, function(error){
       response.status(400).json(error); 
    });
-   
-   //DEBUG list items
-   Item.list(function(items){
-       console.log('ITems:',items); //DEBUG
-       //response.json(items);
-   }, function(error){
-       response.status(400).json(error);
-   }); 
 });
 
 //DEBUG clear all scores on list
 router.get('/clearScores', function(request, response){
-    
     Item.deleteAll(function(items){
         console.log('SCORES DELETED');
         response.json(items);

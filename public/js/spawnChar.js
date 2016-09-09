@@ -1,6 +1,6 @@
 //spawn.js
 
-function createFox(comeFromSide, speed){
+function createFox(comeFromSide, speed, height){
     var found = -1;
     
     for(var i=0; i<maxFOX; i++){
@@ -12,19 +12,19 @@ function createFox(comeFromSide, speed){
     
     if(found >= 0){
         foxSprite[found] = new createjs.Sprite(foxSheet, "walk"); 
-        foxSprite[found].regX = 142;
-        foxSprite[found].width = 284;
-        foxSprite[found].height = 185;
+        foxSprite[found].regX = 70;
+        foxSprite[found].width = 140;
+        foxSprite[found].height = 91;
         
         if(comeFromSide.toLowerCase() === 'left'){
             foxSprite[found].x = -10;
-            foxSprite[found].y = 200;
+            foxSprite[found].y = height;
             foxSprite[found].dx = speed;
             foxSprite[found].scaleX = 1;
         }
         if(comeFromSide.toLowerCase() === 'right'){
             foxSprite[found].x = WIDTH+10;
-            foxSprite[found].y = 200;
+            foxSprite[found].y = height;
             foxSprite[found].dx = speed;
             foxSprite[found].scaleX = -1;
         }
@@ -46,12 +46,12 @@ function createEgg(playerX, playerY, playerScaleX){
     
     if(found >= 0){
         eggSprite[found] = new createjs.Sprite(eggSheet, "none");
-        eggSprite[found].regX = 44;
+        eggSprite[found].regX = 22;
         eggSprite[found].x = playerX;
         eggSprite[found].y = playerY;
-        eggSprite[found].width = 88;
-        eggSprite[found].height = 80;
-        eggSprite[found].dx = 3;
+        eggSprite[found].width = 44;
+        eggSprite[found].height = 40;
+        eggSprite[found].dx = 12; //3
         if(playerScaleX === -1){
             eggSprite[found].scaleX = -1;
         }else{
@@ -79,7 +79,7 @@ function createEggPartner(playerX, playerY, playerScaleX){
         eggSpritePartner[found].y = playerY;
         eggSpritePartner[found].width = 88;
         eggSpritePartner[found].height = 80;
-        eggSpritePartner[found].dx = 3;
+        eggSpritePartner[found].dx = 12; //3
         if(playerScaleX === -1){
             eggSpritePartner[found].scaleX = -1;
         }else{

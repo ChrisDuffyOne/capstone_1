@@ -7,10 +7,10 @@ function createQueue(){
     queue = new createjs.LoadQueue(false);
     queue.on("complete", queueLoaded, this);
     queue.loadManifest([
-        {id: 'chickenChar', src: 'assets/chicken.png'},
-        {id: 'chickenCharBr', src: 'assets/chickenBr.png'},
-        {id: 'foxChar', src: 'assets/fox.png'},
-        {id: 'egg', src: 'assets/egg.png'},
+        {id: 'chickenChar', src: 'assets/chickenLt.png'},
+        {id: 'chickenCharBr', src: 'assets/chickenBrLt.png'},
+        {id: 'foxChar', src: 'assets/foxLt.png'},
+        {id: 'egg', src: 'assets/eggLt.png'},
         {id: 'barnScreen', src: 'assets/barnCoolBack.png'}
     ]);
     queue.load();
@@ -29,45 +29,45 @@ function queueLoaded(event){
     
     chickenSheet = new createjs.SpriteSheet({
         "images": [queue.getResult('chickenChar')],
-        "frames": {"width": 214, "height": 241},
+        "frames": {"width": 107, "height": 122},
         "animations": {"flap": [0,0]}
     });
     chickenBrSheet = new createjs.SpriteSheet({
         "images": [queue.getResult('chickenCharBr')],
-        "frames": {"width": 214, "height": 241},
+        "frames": {"width": 107, "height": 122},
         "animations": {"flap": [0,0]}
     }); 
     foxSheet = new createjs.SpriteSheet({
         "images": [queue.getResult('foxChar')],
-        "frames": {"width": 284, "height": 185},
+        "frames": {"width": 140, "height": 91},
         "animations": {"walk": [0,0]}
     });
     eggSheet = new createjs.SpriteSheet({
         "images": [queue.getResult('egg')],
-        "frames": {"width": 88, "height": 80},
+        "frames": {"width": 44, "height": 40},
         "animations": {"none": [0,0]}
     });
     
     //create player
     playerSprite = new createjs.Sprite(chickenSheet, "flap");
-    playerSprite.regX = 100;
-    playerSprite.scaleX = 1; //DEBUG
+    playerSprite.regX = 53;
+    playerSprite.scaleX = 1;
     playerSprite.x = 100;
     playerSprite.y = 200;
-    playerSprite.width = 214;
-    playerSprite.height = 241;
+    playerSprite.width = 107;
+    playerSprite.height = 122;
     playerSprite.dx = 10;
     playerSprite.gotoAndPlay("flap");
     stage.addChildAt(playerSprite,1);
     
     //create partner
     partnerSprite = new createjs.Sprite(chickenBrSheet, "flap");
-    partnerSprite.regX = 100;
-    partnerSprite.scaleX = 1; //DEBUG
+    partnerSprite.regX = 53;
+    partnerSprite.scaleX = 1;
     partnerSprite.x = 425;
     partnerSprite.y = 500;
-    partnerSprite.width = 214;
-    partnerSprite.height = 241;
+    partnerSprite.width = 107;
+    partnerSprite.height = 122;
     partnerSprite.gotoAndPlay("flap");
     stage.addChildAt(partnerSprite,1);
 
@@ -84,11 +84,13 @@ function queueLoaded(event){
 
 //----------- PROCESS EVENTS -------------//
 function processEvents(){
-    updatePlayerControl();
-    updateFoxMovement();
-    updateEggMovement();
-    updateEggPartnerMovement(); //DEBUG
-    collisionProcess();
+    if(notDead){ //DEBUG
+        updatePlayerControl();
+        updateFoxMovement();
+        updateEggMovement();
+        updateEggPartnerMovement();
+        collisionProcess();
+    }
 };
 
 //------------ debug FOX KILL OTHER -------------//
@@ -101,7 +103,7 @@ function killFoxPartner(foxX, foxY, eggX, eggY){
         }
     }
     for(var i=0; i<maxEGGpartner; i++) if(eggSpritePartner[i]){
-        if(eggSpritePartner[i].x >= eggX-10 && eggSpritePartner[i].x <= eggX+10){
+        if(eggSpritePartner[i].x >= eggX-30 && eggSpritePartner[i].x <= eggX+30){
             stage.removeChild(eggSpritePartner[i]);
             eggSprite.splice(i, 1);
         }
@@ -109,7 +111,7 @@ function killFoxPartner(foxX, foxY, eggX, eggY){
 }
 
 //----------- GAME INSTANCE -------------//
-socket.on('gameInstance',function(gameInfo){
+/*socket.on('gameInstance',function(gameInfo){
     if(gameLoaded){
         if(gameInfo.gameType === 'foxSpawn'){
             console.log('Client direction:',gameInfo.direction);//DEBUG
@@ -118,7 +120,7 @@ socket.on('gameInstance',function(gameInfo){
             createFox(gameInfo.direction, gameInfo.speed);
         }
     }
-});
+});*/
 
 //----------------------------------//
 //		    SCORE METHODS           //

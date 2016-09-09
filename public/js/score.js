@@ -33,6 +33,8 @@ ScoreList.prototype.addScore = function(name) {
         contentType: 'application/json'
     });
     ajax.done();
+    //redirect to home
+    window.location = '/';
 };
 
 ScoreList.prototype.getItems = function() {
@@ -41,11 +43,13 @@ ScoreList.prototype.getItems = function() {
         dataType: 'json'
     });
     ajax.done(this.onGetItemsDone.bind(this));
-}
+};
 
 ScoreList.prototype.onGetItemsDone = function(items) {
     this.items = items;
-    console.log('GetItemsDone:', this.items)
+    items.sort(function(a,b){
+        return parseFloat(b.score) - parseFloat(a.score);
+    });
     
     //update view here
     var displayScores = [];

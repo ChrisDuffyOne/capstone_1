@@ -19,10 +19,11 @@ exports.gameInstance = function(io, roomNum){
         gameCounter++;
         
         //----------- FOX SPAWN -------------//
-        if(gameCounter%5 === 0){
+        //if(gameCounter%5 === 0){
             
             var speed;
             var direction;
+            var height;
             var eventGen = Math.floor((Math.random() * 10) + 1); //rand between 1 and 10
             
             //direction assign
@@ -33,13 +34,18 @@ exports.gameInstance = function(io, roomNum){
             if(eventGen%2 === 0){ speed = 3}
             else{ speed = 2}
             
-            io.in(roomNum).emit('gameInstance', {gameType: 'foxSpawn', direction: direction, speed: speed});
-        }
+            //height assign
+            if(eventGen >= 4 && eventGen <= 7){height = 270}
+            else{height = 360}
+
+            io.in(roomNum).emit('gameInstance', {gameType: 'foxSpawn', direction: direction, speed: speed, height: height});
+        //}
         
-        //----------- debug EXIT GAME INSTANCE -------------//
-        //TODO exit game loop when user leave
-        if(gameCounter > 50){
+        //----------- EXIT GAME INSTANCE -------------//
+        if(io.nsps['/'].adapter.rooms[roomNum] === undefined){
+          console.log('END GAME LOOP WITH ROOM CHECK');
           clearInterval(demoGameLoop);
         }
+        
     }, 1000); 
 };

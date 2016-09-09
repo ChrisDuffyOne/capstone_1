@@ -15,6 +15,15 @@ var io = socket_io(server);
 var methods = require('./methods.js');
 var players = [];
 
+//DEBUG Room info
+/*var roomReadout = function(){
+     setInterval(function(){ 
+         console.log('ROOM INFO');
+         console.log(players);
+     }, 3000);
+};
+roomReadout();*/
+
 //----------------------------------//
 //		      SOCKET APP            //
 //----------------------------------//
@@ -27,14 +36,14 @@ io.on('connection', function(socket){
           socket.join(roomNum);
           var newPlayer = {id: socket.id, playerNum: 0, rmNumber: roomNum};
           players.push(newPlayer);
-          socket.emit('playerNum', newPlayer.playerNum); //DEBUG
-          methods.gameInstance(io, roomNum); //DEBUG
+          socket.emit('playerNum', newPlayer.playerNum);
+          methods.gameInstance(io, roomNum);
        //2nd player
        }else if(io.nsps['/'].adapter.rooms[roomNum].length === 1){
            socket.join(roomNum);
            var newPlayer = {id: socket.id, playerNum: 1, rmNumber: roomNum};
            players.push(newPlayer);
-           socket.emit('playerNum', newPlayer.playerNum); //DEBUG
+           socket.emit('playerNum', newPlayer.playerNum);
        }
    });
    

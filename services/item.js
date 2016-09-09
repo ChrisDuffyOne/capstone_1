@@ -12,7 +12,7 @@ exports.save = function(body, callback, errorback){
             return;
         }
         if(item){
-            console.log('UPDATE PLAYER:'+body.playerHandle);
+            //console.log('UPDATE PLAYER:'+body.playerHandle);
             Item.findOneAndUpdate({playerHandle: body.playerHandle}, {score: body.score}, {upsert:true}, function(error, item){
                 if (error || !item){
                     errorback(error);
@@ -21,7 +21,7 @@ exports.save = function(body, callback, errorback){
                 callback(item);
             });
         }else{
-            console.log('CREATE PLAYER:'+body.playerHandle);
+            //console.log('CREATE PLAYER:'+body.playerHandle);
             Item.create({playerHandle: body.playerHandle, score: body.score},function(error, item){
                 if(error){
                     errorback(error);

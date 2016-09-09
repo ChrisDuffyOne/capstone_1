@@ -5,6 +5,7 @@ var roomIndex;
 var context;
 var queue;
 var stage;
+var notDead = true; //DEBUG
 var gameLoaded = false;
 var maxFOX = 30;
 var maxEGG = 30;
@@ -37,7 +38,7 @@ var Key = {
       firePressed: 0,
       firePressReset: function(){
           var self = this;
-          setTimeout(function(){self.firePressed = 0}, 2000);
+          setTimeout(function(){self.firePressed = 0}, 500); //2000
       },
       
       SPACE: 32,

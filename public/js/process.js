@@ -4,19 +4,23 @@ function updatePlayerControl(){
     
     //this player movement
     if (Key.isDown(Key.UP)){
+        console.log('playerSprite.y:',playerSprite.y); //DEBUG
         playerSprite.y -= playerSprite.dx;
         socket.emit('playerComm',{commType: 'playerPos', room: roomIndex, x: playerSprite.x, y:playerSprite.y});
     };
     if (Key.isDown(Key.LEFT)){
+        console.log('playerSprite.x:',playerSprite.x); //DEBUG
         playerSprite.scaleX = -1;
         playerSprite.x -= playerSprite.dx;
         socket.emit('playerComm',{commType: 'playerPos', room: roomIndex, x: playerSprite.x, y:playerSprite.y});
     };
     if (Key.isDown(Key.DOWN)){
+        console.log('playerSprite.y:',playerSprite.y); //DEBUG
         playerSprite.y += playerSprite.dx;
         socket.emit('playerComm',{commType: 'playerPos', room: roomIndex, x: playerSprite.x, y:playerSprite.y});
     };
     if (Key.isDown(Key.RIGHT)){
+        console.log('playerSprite.x:',playerSprite.x); //DEBUG
         playerSprite.scaleX = 1;
         playerSprite.x += playerSprite.dx;
         socket.emit('playerComm',{commType: 'playerPos', room: roomIndex, x: playerSprite.x, y:playerSprite.y});
@@ -102,6 +106,8 @@ function collisionProcess(){
     //fox/player collide
     for(var r=0; r<maxFOX; r++) if(foxSprite[r]){
         if(collide2dEasel(foxSprite[r], playerSprite)){
+            //DEBUG stop process
+            notDead = false; //DEBUG
             
             //display score box
             $('#playerScore').html(score);
@@ -111,6 +117,13 @@ function collisionProcess(){
             $('#scoreSubmit').css("display", "initial");
         }
     }
+    
+    //DEBUG player screen contain
+    if(playerSprite.y <= 220){playerSprite.y = 220};
+    if(playerSprite.y >= 380){playerSprite.y = 380};
+    if(playerSprite.x <= 60){playerSprite.x = 60};
+    if(playerSprite.x >= 940){playerSprite.x = 940};
+    
     //testEgg
     /*if(collide2dEasel(eggSprite[0], playerSprite)){
         console.log('EASEL COLLIDE REGX Factored');

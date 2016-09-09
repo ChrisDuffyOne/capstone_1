@@ -30,9 +30,8 @@ function arcade(){
     //---------- HIGH SCORES ----------//
     //getAndDisplayScore(); //DEBUG
     
-    //---------- OTHER PLAYER COMMUNICATION ----------//
+    //---------- SOCKET PARTNER ----------//
     socket.on('playerComm', function(data){ 
-        
         //allied player position
         if(data.commType === 'playerPos'){
             //sprite flip
@@ -54,10 +53,17 @@ function arcade(){
        //allied player fox kill
        if(data.commType === 'foxDeath'){
             killFoxPartner(data.foxX, data.foxY, data.eggX, data.eggY);
-            
        }
-        
     });
+    //---------- SOCKET FOXSPAWN ----------//
+    socket.on('gameInstance',function(gameInfo){
+        if(gameLoaded){
+            if(gameInfo.gameType === 'foxSpawn'){
+                createFox(gameInfo.direction, gameInfo.speed, gameInfo.height);
+            }
+        }
+    });
+    
     
     //---------- PLAYER LEAVE ----------//
     window.addEventListener("beforeunload", function () {

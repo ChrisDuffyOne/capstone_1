@@ -1,6 +1,6 @@
 {
    "production": {
-       "url": "mongodb://localhost/shopping-list"
+        "url": "mongodb://testMan:123456@ds027896.mlab.com:27896/arcade_app"
    },
    "test":{
        "url": "mongodb://localhost/shopping-list-test"
