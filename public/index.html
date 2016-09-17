@@ -3,19 +3,46 @@
     <head>
         <title>Capstone1 Arcade/SpawnCharjs</title>
         <link href="css/normalize.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/bootstrap.min.css"> <!--DEBUG-->
         <link href="css/game.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        <div class="gameArea">
-            <p>Capstone1</p>
+        <div class="gameArea container">
+            
+            <div class="row marqueeRow">
+                <img src="assets/marqueeResize.png" class="col-xs-10 col-xs-offset-1" id="titleMarquee" alt="Marquee">
+            </div>
             
             <!--Room Select-->
-            <ul class="roomSelect">
-                <li>ROOM0</li>
-                <li>ROOM1</li>
-                <li>ROOM2</li>
-                <li>ROOM3</li>
-            </ul>
+            <div class = "row roomSelectRow">  
+                <div class="col-xs-10 col-xs-offset-1">
+                    <ul class="roomSelect">
+                        <!--<li>ROOM0</li>
+                        <li>ROOM1</li>
+                        <li>ROOM2</li>
+                        <li>ROOM3</li>-->
+                        
+                        <li><button type="button" class="roomSelectButton">
+                                ROOM0
+                        </button></li>
+                        <li><button type="button" class="roomSelectButton">
+                                ROOM1
+                        </button></li>
+                        <li><button type="button" class="roomSelectButton">
+                                ROOM2
+                        </button></li>
+                        <li><button type="button" class="roomSelectButton">
+                                ROOM3
+                        </button></li>
+                       
+                        
+                    </ul>
+                    
+                    <button type="button" id="hiScoreButton">
+                        HighScore
+                    </button>
+                </div>
+            </div>
             
             <!--Score Submit-->
             <div id="scoreSubmit">
@@ -23,20 +50,30 @@
                 <input type="text" id="playerName" autocomplete="off" autofocus>
             </div>
             
+            <!-- DEBUG high scores -->
+            <div id="scoreDiv">
+                <h1>High Scores</h1>
+                <ul id="scoreList">
+                </ul>
+            </div>
+            
             <!--Game Section-->
-            <canvas id="myCanvas"></canvas>
+            <div class="row gameRow">
+                <canvas id="myCanvas"></canvas>
+            </div>
             
             
             <!--High Score Section--->
-            <h1>High Scores</h1>
+            <!--<h1>High Scores</h1>
             <ul id="scoreList">
-            </ul>
+            </ul>-->
             
         </div>
         
         <!--Scripts-->
         <script src="/socket.io/socket.io.js"></script>
         <script src="js/jquery-2.1.0.js"></script>
+        <script src="js/bootstrap.min.js"></script> <!--DEBUG-->
         <script src="js/createjs-2015.11.26.min.js"></script>
         
         <!--Game Scripts-->
@@ -44,7 +81,7 @@
         <script src="js/spawnChar.js"></script>
         <script src="js/process.js"></script>
         <script src="js/methods.js"></script> 
-        <script src="js/score.js"></script> <!--DEBUG-->
+        <script src="js/score.js"></script>
         <script src="js/main.js"></script>
         
     </body>

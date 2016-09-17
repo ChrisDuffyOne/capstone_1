@@ -2,23 +2,47 @@
 //		 ARCADE APP FUNCTION	    //
 //----------------------------------//
 function arcade(){
+    //----------- debug SCORE SLIDE -------------//
+    $('#hiScoreButton').click(function(){
+       $('#scoreDiv').slideToggle(500);
+       $('.gameRow').slideToggle(500);
+    });
     
-    //----------- debug CREATE SCORE INPUT -------------//
+    //----------- debug TUTORIAL SCREEN -------------//
+    function drawTutorial(){
+        var ctx = $("canvas")[0].getContext("2d");
+        var img = new Image();
+        
+        img.onload = function(){
+            ctx.drawImage(img, 0, 0, 1000, 500);
+        };
+        
+        img.src = "assets/titleScreen.png";
+    }
+    drawTutorial();
+    
+    //----------- CREATE SCORE INPUT -------------//
     var scoreBoard = new ScoreList();
     
     //----------- ROOM SELECT & LOAD ASSETS -------------//
     $('.roomSelect li').on('click', function(){
-       var room = "room";
-       var index = $(this).index();
-       roomIndex = room.concat(index);
-       socket.emit('roomSelect', roomIndex);
-       $('.roomSelect').css('display','none');
-       createQueue();
+        var room = "room";
+        var index = $(this).index();
+        roomIndex = room.concat(index);
+        socket.emit('roomSelect', roomIndex);
+        $('.roomSelect').css('display','none');
+        createQueue();
     });
     //player assign
     socket.on('playerNum', function(number){
        console.log('DEBUG: Player SPRITE', number);
     });
+    
+    //----------- debug SHOW/HIDE SCORE -------------//
+	$('#hiScoreButton').on('click', function(){
+	    //TODO hide scores div
+	});
+	
 	
 	//---------- CREATE JS ----------//
     var canvas = document.getElementById('myCanvas');
@@ -26,9 +50,6 @@ function arcade(){
     context.canvas.width = WIDTH; 
     context.canvas.height = HEIGHT;
     stage = new createjs.Stage("myCanvas");
-    
-    //---------- HIGH SCORES ----------//
-    //getAndDisplayScore(); //DEBUG
     
     //---------- SOCKET PARTNER ----------//
     socket.on('playerComm', function(data){ 

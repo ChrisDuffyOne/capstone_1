@@ -4,23 +4,23 @@ function updatePlayerControl(){
     
     //this player movement
     if (Key.isDown(Key.UP)){
-        console.log('playerSprite.y:',playerSprite.y); //DEBUG
+        //console.log('playerSprite.y:',playerSprite.y); //DEBUG
         playerSprite.y -= playerSprite.dx;
         socket.emit('playerComm',{commType: 'playerPos', room: roomIndex, x: playerSprite.x, y:playerSprite.y});
     };
     if (Key.isDown(Key.LEFT)){
-        console.log('playerSprite.x:',playerSprite.x); //DEBUG
+        //console.log('playerSprite.x:',playerSprite.x); //DEBUG
         playerSprite.scaleX = -1;
         playerSprite.x -= playerSprite.dx;
         socket.emit('playerComm',{commType: 'playerPos', room: roomIndex, x: playerSprite.x, y:playerSprite.y});
     };
     if (Key.isDown(Key.DOWN)){
-        console.log('playerSprite.y:',playerSprite.y); //DEBUG
+        //console.log('playerSprite.y:',playerSprite.y); //DEBUG
         playerSprite.y += playerSprite.dx;
         socket.emit('playerComm',{commType: 'playerPos', room: roomIndex, x: playerSprite.x, y:playerSprite.y});
     };
     if (Key.isDown(Key.RIGHT)){
-        console.log('playerSprite.x:',playerSprite.x); //DEBUG
+        //console.log('playerSprite.x:',playerSprite.x); //DEBUG
         playerSprite.scaleX = 1;
         playerSprite.x += playerSprite.dx;
         socket.emit('playerComm',{commType: 'playerPos', room: roomIndex, x: playerSprite.x, y:playerSprite.y});
@@ -99,6 +99,7 @@ function collisionProcess(){
                 stage.removeChild(foxSprite[k]);
                 eggSprite.splice(i, 1);
                 foxSprite.splice(k, 1);
+                break;
             }
         }
     }

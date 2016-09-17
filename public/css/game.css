@@ -1,18 +1,48 @@
+@font-face {font-family: Pixel; src: url('../Crazy-Pixel.ttf');}
+
+body{
+    background-color:black;
+}
+
+/*----------- MARQUEE AREA -----------*/
 .gameArea{
   text-align: center;  
 }
-.userInfo{
-    
+.marqueeRow{
+    background-color: #3292D0;
+}
+#titleMarquee{
+    max-width: 100%;
+}
+
+/*----------- ROOM SELECT AREA -----------*/
+.roomSelectRow{
+   background-color: #3292D0;
 }
 .roomSelect{
     list-style-type: none;
+    float: left;
+    padding-left: 0px;
 }
 .roomSelect li{
     display: inline-block;
-    width: 60px;
-    height: 40px;
-    background-color: green;
 }
+.roomSelectButton{
+    font-family: Pixel;
+    font-size: 2em;
+}
+#hiScoreButton{
+    float: right;
+    font-family: Pixel;
+    font-size: 2em;
+    
+    /*background:none;*/
+    /*border:none;*/
+    /*font-size:1em;*/
+    color:blue;
+}
+
+/*----------- SCORE SUBMIT AREA -----------*/
 #scoreSubmit{
     display: none; /*Dispaly after gameover*/
     position: absolute;
@@ -24,17 +54,21 @@
     margin: -100px 0 0 -150px;
     background: green;
 }
-.userNameCreate{
-    color: white;
-}
-.userNameCreate input{
-    color: black;
-}
-#myCanvas   {
-   /*margin-left: auto;
-   margin-right: auto;*/
+
+/*----------- HIGHSCORE AREA -----------*/
+#scoreDiv{
+    display: none;
 }
 .scoreItem{
     list-style-type: none;
     background-color: green;
+}
+
+/*----------- GAMESCREEN AREA -----------*/
+.gameRow{
+    background-color: grey;
+}
+#myCanvas   {
+   /*margin-left: auto;
+   margin-right: auto;*/
 }
