@@ -1,4 +1,6 @@
-//spawn.js
+//----------------------------------//
+//		  SPAWN CHARACTER JS	    //
+//----------------------------------//
 
 function createFox(comeFromSide, speed, height){
     var found = -1;
@@ -79,7 +81,7 @@ function createEggPartner(playerX, playerY, playerScaleX){
         eggSpritePartner[found].y = playerY;
         eggSpritePartner[found].width = 88;
         eggSpritePartner[found].height = 80;
-        eggSpritePartner[found].dx = 12; //3
+        eggSpritePartner[found].dx = 12;
         if(playerScaleX === -1){
             eggSpritePartner[found].scaleX = -1;
         }else{

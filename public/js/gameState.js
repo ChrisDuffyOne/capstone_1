@@ -5,7 +5,7 @@ var roomIndex;
 var context;
 var queue;
 var stage;
-var notDead = true; //DEBUG
+var notDead = true;
 var gameLoaded = false;
 var maxFOX = 30;
 var maxEGG = 30;
@@ -16,7 +16,7 @@ var HEIGHT = 500;
 var score = 0;
 var scoreText;
 
-//charSheets
+//CharSheets
 var chickenSheet;
 var chickenBrSheet;
 var foxSheet;
@@ -38,7 +38,7 @@ var Key = {
       firePressed: 0,
       firePressReset: function(){
           var self = this;
-          setTimeout(function(){self.firePressed = 0}, 500); //2000
+          setTimeout(function(){self.firePressed = 0}, 500);
       },
       
       SPACE: 32,
@@ -58,26 +58,4 @@ var Key = {
       onKeyup: function(event) {
         delete this._pressed[event.keyCode];
       }
-    };
-
-//DEBUG Score Data    
-var DEBUG_SCORES = {
-    "scores":[
-        {
-            "playerHandle" : "Obama",
-            "score": "72"
-        },
-        {
-            "playerHandle" : "Biden",
-            "score": "54"
-        },
-        {
-            "playerHandle" : "Trump",
-            "score": "107"
-        },
-        {
-            "playerHandle" : "Hillary",
-            "score": "98"
-        }
-    ]
-}
+};

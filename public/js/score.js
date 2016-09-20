@@ -2,7 +2,7 @@ var ScoreList = function() {
     this.items = [];
     this.input =$('#playerName');
     this.input.keydown(this.onAddPlayerName.bind(this));
-    this.getItems(); //DEBUG
+    this.getItems();
 };
 
 ScoreList.prototype.onAddPlayerName = function(event) {

@@ -1,4 +1,4 @@
-@font-face {font-family: Pixel; src: url('../Crazy-Pixel.ttf');}
+@font-face {font-family: Pixel; src: url('../font/Crazy-Pixel.ttf');}
 
 body{
     background-color:black;
@@ -30,11 +30,6 @@ body{
 .roomSelectButton{
     font-family: Pixel;
     font-size: 2em;
-    
-    /*background:none;
-    border:none;
-    font-size:1em;
-    color:blue;*/
 }
 #hiScoreButton{
     float: right;
@@ -88,8 +83,4 @@ body{
 /*----------- GAMESCREEN AREA -----------*/
 .gameRow{
     background-color: #313149;
-}
-#myCanvas   {
-   /*margin-left: auto;
-   margin-right: auto;*/
 }

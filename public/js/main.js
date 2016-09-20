@@ -2,26 +2,16 @@
 //		 ARCADE APP FUNCTION	    //
 //----------------------------------//
 function arcade(){
-    //----------- debug SCORE SLIDE -------------//
+    //----------- SCORE SLIDE -------------//
     $('#hiScoreButton').click(function(){
        $('#scoreDiv').slideToggle(500);
        $('.gameRow').slideToggle(500);
     });
     
-    //----------- debug TUTORIAL SCREEN -------------//
-    function drawTutorial(){
-        var ctx = $("canvas")[0].getContext("2d");
-        var img = new Image();
-        
-        img.onload = function(){
-            ctx.drawImage(img, 0, 0, 1000, 500);
-        };
-        
-        img.src = "assets/titleScreenBarn.png";
-    }
+    //----------- TUTORIAL SCREEN -------------//
     drawTutorial();
     
-    //----------- CREATE SCORE INPUT -------------//
+    //----------- SCORES -------------//
     var scoreBoard = new ScoreList();
     
     //----------- ROOM SELECT & LOAD ASSETS -------------//
@@ -30,9 +20,8 @@ function arcade(){
         var index = $(this).index();
         roomIndex = room.concat(index);
         socket.emit('roomSelect', roomIndex);
-        $('.roomSelect').css('display','none');
         createQueue();
-        $('.roomSelectRow').slideToggle(500); //DEBUG
+        $('.roomSelectRow').slideToggle(500);
     });
     //player assign
     socket.on('playerNum', function(number){
@@ -46,40 +35,13 @@ function arcade(){
     context.canvas.height = HEIGHT;
     stage = new createjs.Stage("myCanvas");
     
-    //---------- SOCKET PARTNER ----------//
-    socket.on('playerComm', function(data){ 
-        //allied player position
-        if(data.commType === 'playerPos'){
-            //sprite flip
-            if(data.x > partnerSprite.x){
-                partnerSprite.scaleX = 1;
-            }else{
-                partnerSprite.scaleX = -1;
-            } 
-            //sprite move
-            partnerSprite.x = data.x;
-            partnerSprite.y = data.y;
-        }
-        
-        //allied eggs
-        if(data.commType === 'eggFire'){
-            createEggPartner(data.x, data.y, data.scaleX);
-        }
-        
-       //allied player fox kill
-       if(data.commType === 'foxDeath'){
-            killFoxPartner(data.foxX, data.foxY, data.eggX, data.eggY);
-       }
+    //---------- SOCKET EVENTS ----------//
+    socket.on('playerComm', function(data){
+        socketPlayerComm(data);
     });
-    //---------- SOCKET FOXSPAWN ----------//
     socket.on('gameInstance',function(gameInfo){
-        if(gameLoaded){
-            if(gameInfo.gameType === 'foxSpawn'){
-                createFox(gameInfo.direction, gameInfo.speed, gameInfo.height);
-            }
-        }
+        socketGameComm(gameInfo);
     });
-    
     
     //---------- PLAYER LEAVE ----------//
     window.addEventListener("beforeunload", function () {

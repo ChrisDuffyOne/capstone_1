@@ -2,6 +2,17 @@
 //		     GAME METHODS           //
 //----------------------------------//
 
+//----------- TUTORIAL SCREEN -------------//
+function drawTutorial(){
+        var ctx = $("canvas")[0].getContext("2d");
+        var img = new Image();
+        
+        img.onload = function(){
+            ctx.drawImage(img, 0, 0, 1000, 500);
+        };
+        img.src = "assets/titleScreenBarn.png";
+}
+
 //----------- CREATE QUEUE -------------//
 function createQueue(){
     queue = new createjs.LoadQueue(false);
@@ -21,8 +32,6 @@ function queueLoaded(event){
     var greenFPO = new createjs.Bitmap(queue.getResult("barnScreen"));
     stage.addChild(greenFPO);
     
-    //DEBUG score area
-    //scoreText = new createjs.Text("SCORE: " + score.toString(), "36px Arial", "#FFF");
     scoreText = new createjs.Text("SCORE: " + score.toString(), "50px Pixel", "#FFF");
     scoreText.x = 10;
     scoreText.y = -20;
@@ -94,7 +103,7 @@ function processEvents(){
     }
 };
 
-//------------ debug FOX KILL OTHER -------------//
+//------------ FOXKILL OTHER -------------//
 function killFoxPartner(foxX, foxY, eggX, eggY){
     for(var k=0; k<maxFOX; k++) if(foxSprite[k]){
         if(foxSprite[k].x >= foxX-10 && foxSprite[k].x <= foxX+10){
@@ -109,33 +118,4 @@ function killFoxPartner(foxX, foxY, eggX, eggY){
             eggSprite.splice(i, 1);
         }
     }
-}
-
-//----------- GAME INSTANCE -------------//
-/*socket.on('gameInstance',function(gameInfo){
-    if(gameLoaded){
-        if(gameInfo.gameType === 'foxSpawn'){
-            console.log('Client direction:',gameInfo.direction);//DEBUG
-            console.log('Client speed :',gameInfo.speed);//DEBUG
-            //createFox();
-            createFox(gameInfo.direction, gameInfo.speed);
-        }
-    }
-});*/
-
-//----------------------------------//
-//		    SCORE METHODS           //
-//----------------------------------//
-//!\CHANGEfORfINAL
-function getScores(callbackFunc){
-    setTimeout(function(){callbackFunc(DEBUG_SCORES)}, 2000);
-}
-function displayHighScores(data){
-    for(index in data.scores){
-        $('#scoreList').append(
-            '<li class="scoreItem"><span>'+data.scores[index].playerHandle+'</span><span>'+data.scores[index].score+'</span></li>');
-    }
-}
-function getAndDisplayScore(){
-    getScores(displayHighScores);
 }

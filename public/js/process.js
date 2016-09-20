@@ -1,4 +1,6 @@
-//moveChar.js
+//----------------------------------//
+//		  PROCESS FUNCTIONS	        //
+//----------------------------------//
 
 function updatePlayerControl(){
     
@@ -31,7 +33,6 @@ function updatePlayerControl(){
         Key.firePressed = 1;
         Key.firePressReset();
         createEgg(playerSprite.x, playerSprite.y, playerSprite.scaleX);
-        
         socket.emit('playerComm',{commType: 'eggFire', room: roomIndex, x: playerSprite.x, y:playerSprite.y, scaleX: playerSprite.scaleX});
     };
 };
@@ -44,7 +45,7 @@ function updateFoxMovement(){
             foxSprite[i].x += foxSprite[i].dx;
         }
         
-        if(foxSprite[i].x < -20 || foxSprite[i].x > WIDTH+20){ //-20
+        if(foxSprite[i].x < -20 || foxSprite[i].x > WIDTH+20){
             stage.removeChild(foxSprite[i]);
             foxSprite.splice(i, 1);
         }
@@ -119,16 +120,11 @@ function collisionProcess(){
         }
     }
     
-    //DEBUG player screen contain
+    //player screen contain
     if(playerSprite.y <= 220){playerSprite.y = 220};
     if(playerSprite.y >= 380){playerSprite.y = 380};
     if(playerSprite.x <= 60){playerSprite.x = 60};
     if(playerSprite.x >= 940){playerSprite.x = 940};
-    
-    //testEgg
-    /*if(collide2dEasel(eggSprite[0], playerSprite)){
-        console.log('EASEL COLLIDE REGX Factored');
-    };*/
 }
 
 function collide2dEasel(sprite1, sprite2){
