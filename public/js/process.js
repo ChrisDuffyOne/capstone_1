@@ -107,8 +107,8 @@ function collisionProcess(){
     //fox/player collide
     for(var r=0; r<maxFOX; r++) if(foxSprite[r]){
         if(collide2dEasel(foxSprite[r], playerSprite)){
-            //DEBUG stop process
-            notDead = false; //DEBUG
+            //stop process
+            notDead = false;
             
             //display score box
             $('#playerScore').html(score);

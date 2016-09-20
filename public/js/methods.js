@@ -22,9 +22,10 @@ function queueLoaded(event){
     stage.addChild(greenFPO);
     
     //DEBUG score area
-    scoreText = new createjs.Text("SCORE: " + score.toString(), "36px Arial", "#FFF");
+    //scoreText = new createjs.Text("SCORE: " + score.toString(), "36px Arial", "#FFF");
+    scoreText = new createjs.Text("SCORE: " + score.toString(), "50px Pixel", "#FFF");
     scoreText.x = 10;
-    scoreText.y = 10;
+    scoreText.y = -20;
     stage.addChild(scoreText);
     
     chickenSheet = new createjs.SpriteSheet({
@@ -52,8 +53,8 @@ function queueLoaded(event){
     playerSprite = new createjs.Sprite(chickenSheet, "flap");
     playerSprite.regX = 53;
     playerSprite.scaleX = 1;
-    playerSprite.x = 100;
-    playerSprite.y = 200;
+    playerSprite.x = 500;
+    playerSprite.y = 260;
     playerSprite.width = 107;
     playerSprite.height = 122;
     playerSprite.dx = 10;
@@ -84,7 +85,7 @@ function queueLoaded(event){
 
 //----------- PROCESS EVENTS -------------//
 function processEvents(){
-    if(notDead){ //DEBUG
+    if(notDead){
         updatePlayerControl();
         updateFoxMovement();
         updateEggMovement();
@@ -129,14 +130,12 @@ function killFoxPartner(foxX, foxY, eggX, eggY){
 function getScores(callbackFunc){
     setTimeout(function(){callbackFunc(DEBUG_SCORES)}, 2000);
 }
-
 function displayHighScores(data){
     for(index in data.scores){
         $('#scoreList').append(
             '<li class="scoreItem"><span>'+data.scores[index].playerHandle+'</span><span>'+data.scores[index].score+'</span></li>');
     }
 }
-
 function getAndDisplayScore(){
     getScores(displayHighScores);
 }

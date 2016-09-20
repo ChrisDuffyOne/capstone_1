@@ -30,21 +30,23 @@ body{
 .roomSelectButton{
     font-family: Pixel;
     font-size: 2em;
+    
+    /*background:none;
+    border:none;
+    font-size:1em;
+    color:blue;*/
 }
 #hiScoreButton{
     float: right;
     font-family: Pixel;
     font-size: 2em;
-    
-    /*background:none;*/
-    /*border:none;*/
-    /*font-size:1em;*/
     color:blue;
 }
 
 /*----------- SCORE SUBMIT AREA -----------*/
 #scoreSubmit{
-    display: none; /*Dispaly after gameover*/
+    display: none; /*Dispaly after gameover*/   
+    font-family: Pixel;
     position: absolute;
     width: 300px;
     height: 150px;
@@ -52,21 +54,40 @@ body{
     top: 50%;
     left: 50%;
     margin: -100px 0 0 -150px;
-    background: green;
+    background-color: #3292D0;
+}
+#scoreSubmit p{
+   font-size: 3em;
+   color : #FFFFFF;
+}
+#scoreSubmit input{
+   font-size: 24px;
 }
 
 /*----------- HIGHSCORE AREA -----------*/
 #scoreDiv{
     display: none;
+    background-color: #313149;
+    text-align: center;
+}
+#scoreDiv h1{
+    font-family: Pixel;
+    font-size: 4em;
+    color : #FFFFFF;
+}
+#scoreList{
+   columns: 3; 
 }
 .scoreItem{
     list-style-type: none;
-    background-color: green;
+    font-family: Pixel;
+    font-size: 2em;
+    color : #FFFFFF;
 }
 
 /*----------- GAMESCREEN AREA -----------*/
 .gameRow{
-    background-color: grey;
+    background-color: #313149;
 }
 #myCanvas   {
    /*margin-left: auto;

@@ -8,20 +8,14 @@
     </head>
     <body>
         <div class="gameArea container">
-            
             <div class="row marqueeRow">
-                <img src="assets/marqueeResize.png" class="col-xs-10 col-xs-offset-1" id="titleMarquee" alt="Marquee">
+                <img src="assets/marqueeResize_1.png" class="col-xs-8 col-xs-offset-2" id="titleMarquee" alt="Marquee">
             </div>
             
             <!--Room Select-->
             <div class = "row roomSelectRow">  
                 <div class="col-xs-10 col-xs-offset-1">
                     <ul class="roomSelect">
-                        <!--<li>ROOM0</li>
-                        <li>ROOM1</li>
-                        <li>ROOM2</li>
-                        <li>ROOM3</li>-->
-                        
                         <li><button type="button" class="roomSelectButton">
                                 ROOM0
                         </button></li>
@@ -34,8 +28,6 @@
                         <li><button type="button" class="roomSelectButton">
                                 ROOM3
                         </button></li>
-                       
-                        
                     </ul>
                     
                     <button type="button" id="hiScoreButton">
@@ -50,24 +42,19 @@
                 <input type="text" id="playerName" autocomplete="off" autofocus>
             </div>
             
-            <!-- DEBUG high scores -->
-            <div id="scoreDiv">
-                <h1>High Scores</h1>
-                <ul id="scoreList">
-                </ul>
-            </div>
-            
             <!--Game Section-->
             <div class="row gameRow">
                 <canvas id="myCanvas"></canvas>
             </div>
-            
-            
-            <!--High Score Section--->
-            <!--<h1>High Scores</h1>
-            <ul id="scoreList">
-            </ul>-->
-            
+        </div>
+        
+        <!-- High Scores-->
+        <div class="container" id="scoreDiv">
+            <div class="row">
+                <h1 class="col-xs-4 col-xs-offset-4">High Scores</h1>
+            </div>
+            <ul id="scoreList" class="col-xs-12">
+            </ul>
         </div>
         
         <!--Scripts-->

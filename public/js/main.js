@@ -17,7 +17,7 @@ function arcade(){
             ctx.drawImage(img, 0, 0, 1000, 500);
         };
         
-        img.src = "assets/titleScreen.png";
+        img.src = "assets/titleScreenBarn.png";
     }
     drawTutorial();
     
@@ -32,17 +32,12 @@ function arcade(){
         socket.emit('roomSelect', roomIndex);
         $('.roomSelect').css('display','none');
         createQueue();
+        $('.roomSelectRow').slideToggle(500); //DEBUG
     });
     //player assign
     socket.on('playerNum', function(number){
        console.log('DEBUG: Player SPRITE', number);
     });
-    
-    //----------- debug SHOW/HIDE SCORE -------------//
-	$('#hiScoreButton').on('click', function(){
-	    //TODO hide scores div
-	});
-	
 	
 	//---------- CREATE JS ----------//
     var canvas = document.getElementById('myCanvas');
