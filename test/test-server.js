@@ -29,7 +29,7 @@ describe('Capstone Tests', function() {
     
     it('make sure DB is clear',function(done){
 		chai.request(app)
-			.get('/scores')
+			.get('/score')
 			.end(function(error, response){
 				should.equal(error, null);
 				response.should.have.status(200);
@@ -42,7 +42,7 @@ describe('Capstone Tests', function() {
     
     it('Add 1st item to DB',function(done){
 		chai.request(app)
-			.post('/scores')
+			.post('/score')
 			.send({'playerHandle' : 'Dummy', 'score': '123'})
 			.end(function(error, response){
 				should.equal(error, null);
@@ -59,7 +59,7 @@ describe('Capstone Tests', function() {
 	
 	it('Add 2nd item to DB',function(done){
 		chai.request(app)
-			.post('/scores')
+			.post('/score')
 			.send({'playerHandle' : 'Test', 'score': '456'})
 			.end(function(error, response){
 				should.equal(error, null);
@@ -76,7 +76,7 @@ describe('Capstone Tests', function() {
 	
 	it('should list items on GET',function(done){
 		chai.request(app)
-			.get('/scores')
+			.get('/score')
 			.end(function(error, response){
 				should.equal(error, null);
 				response.should.have.status(200);

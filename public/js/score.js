@@ -26,7 +26,7 @@ ScoreList.prototype.onAddPlayerName = function(event) {
 ScoreList.prototype.addScore = function(name) {
     var item = {'playerHandle' : name, 'score': score};
     
-    var ajax = $.ajax('/scores', {
+    var ajax = $.ajax('/score', {
         type: 'POST',
         data: JSON.stringify(item),
         dataType: 'json',
@@ -38,7 +38,7 @@ ScoreList.prototype.addScore = function(name) {
 };
 
 ScoreList.prototype.getItems = function() {
-    var ajax = $.ajax('/scores', {
+    var ajax = $.ajax('/score', {
         type: 'GET',
         dataType: 'json'
     });

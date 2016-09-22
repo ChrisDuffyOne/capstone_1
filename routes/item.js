@@ -5,7 +5,7 @@ var express = require('express');
 var Item = require('../services/item');
 var router = express.Router();
 
-router.get('/scores', function(request, response){
+router.get('/score', function(request, response){
    Item.list(function(items){
        response.json(items);
    }, function(error){
@@ -13,7 +13,7 @@ router.get('/scores', function(request, response){
    });  
 });
 
-router.post('/scores', function(request, response){
+router.post('/score', function(request, response){
    Item.save(request.body, function(item){
        response.status(201).json(item);
    }, function(error){
