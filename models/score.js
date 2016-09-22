@@ -2,11 +2,11 @@
 
 var mongoose = require('mongoose');
 
-var ItemSchema = new mongoose.Schema({
+var ScoreSchema = new mongoose.Schema({
     playerHandle: {type: String, required: true},
     score: {type: Number, required: true}
 });
 
-var Item = mongoose.model('Item',ItemSchema);
+var Score = mongoose.model('Score', ScoreSchema);
 
-module.exports = Item;
+module.exports = Score;

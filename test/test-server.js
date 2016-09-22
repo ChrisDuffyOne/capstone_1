@@ -3,11 +3,10 @@ var chaiHttp = require('chai-http');
 
 global.environment = 'test';
 var server = require('../server.js');
-var Item = require('../models/item');
+var Item = require('../models/score');
 
 var should = chai.should();
 var app = server.app;
-var storage = server.storage;
 
 chai.use(chaiHttp);
 chai.use(require('chai-things'));

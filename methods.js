@@ -12,15 +12,17 @@ exports.roomList = function(io){
    console.log('3:',room3list);
 };
 
+exports.roomReadout = function(playersArray){
+    setInterval(function(){ 
+         console.log('ROOM INFO');
+         console.log(playersArray);
+     }, 3000);
+};
+
 exports.gameInstance = function(io, roomNum){
-   var gameCounter = 0;
+   
    var demoGameLoop = setInterval(function(){ 
-        
-        gameCounter++;
-        
         //----------- FOX SPAWN -------------//
-        //if(gameCounter%5 === 0){
-            
             var speed;
             var direction;
             var height;
@@ -39,13 +41,11 @@ exports.gameInstance = function(io, roomNum){
             else{height = 360}
 
             io.in(roomNum).emit('gameInstance', {gameType: 'foxSpawn', direction: direction, speed: speed, height: height});
-        //}
         
         //----------- EXIT GAME INSTANCE -------------//
         if(io.nsps['/'].adapter.rooms[roomNum] === undefined){
           console.log('END GAME LOOP WITH ROOM CHECK');
           clearInterval(demoGameLoop);
         }
-        
     }, 1000); 
 };
