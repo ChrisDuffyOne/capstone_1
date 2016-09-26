@@ -2,10 +2,17 @@
 //		 ARCADE APP FUNCTION	    //
 //----------------------------------//
 function arcade(){
+    
     //----------- SCORE SLIDE -------------//
     $('#hiScoreButton').click(function(){
        $('#scoreDiv').slideToggle(500);
        $('.gameRow').slideToggle(500);
+    });
+    
+    //----------- GAMESCREEN SLIDE -------------//
+    $('.roomSelect .roomSelectButton').click(function(){
+        console.log('SHOW GAME SCREEN');
+        $('.gameRow').slideDown(500);
     });
     
     //----------- TUTORIAL SCREEN -------------//
